@@ -202,7 +202,7 @@ This gives the system an additional predictable validation layer instead of rely
 
 ## Step 1 — Idea
 
-**Screenshot:** `https://github.com/aakashimportant15-max/CONVENANT-AI-Brand-Guardian/blob/main/scr/1.png`
+![Covenant Idea](https://raw.githubusercontent.com/aakashimportant15-max/CONVENANT-AI-Brand-Guardian/main/scr/1.png)
 
 The user starts with a rough idea.
 
