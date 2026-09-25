@@ -222,7 +222,7 @@ The idea is passed into the Discovery stage.
 
 ## Step 2 — Discovery
 
-**Screenshot:** `scr/2.png`
+![Covenant Discovery](https://raw.githubusercontent.com/aakashimportant15-max/CONVENANT-AI-Brand-Guardian/main/scr/2.png)
 
 The Discovery stage converts the rough idea into a structured problem and audience brief.
 
@@ -254,9 +254,11 @@ DiscoveryOutput
 
 **Screenshots:**
 
-- `scr/3.1.png`
-- `scr/3.2.png`
-- `scr/3.3.png`
+![Covenant Directions](https://raw.githubusercontent.com/aakashimportant15-max/CONVENANT-AI-Brand-Guardian/main/scr/3.1.png)
+
+![Covenant Direction Details](https://raw.githubusercontent.com/aakashimportant15-max/CONVENANT-AI-Brand-Guardian/main/scr/3.2.png)
+
+![Covenant Direction Selection](https://raw.githubusercontent.com/aakashimportant15-max/CONVENANT-AI-Brand-Guardian/main/scr/3.3.png)
 
 Covenant generates **three distinct brand directions**.
 
@@ -297,8 +299,9 @@ This is one of the most important interaction points in the product.
 
 **Screenshots:**
 
-- `scr/4.png`
-- `scr/4.2.png`
+![Covenant Constitution](https://raw.githubusercontent.com/aakashimportant15-max/CONVENANT-AI-Brand-Guardian/main/scr/4.png)
+
+![Covenant Constitution Details](https://raw.githubusercontent.com/aakashimportant15-max/CONVENANT-AI-Brand-Guardian/main/scr/4.2.png)
 
 The locked direction becomes the input for Constitution generation.
 
@@ -346,9 +349,11 @@ This Constitution becomes the rule set for the Guardian.
 
 **Screenshots:**
 
-- `scr/5.png`
-- `scr/5.1.png`
-- `scr/5.2.png`
+![Covenant Guardian](https://raw.githubusercontent.com/aakashimportant15-max/CONVENANT-AI-Brand-Guardian/main/scr/5.png)
+
+![Covenant Guardian Result](https://raw.githubusercontent.com/aakashimportant15-max/CONVENANT-AI-Brand-Guardian/main/scr/5.1.png)
+
+![Covenant Guardian Rewrite](https://raw.githubusercontent.com/aakashimportant15-max/CONVENANT-AI-Brand-Guardian/main/scr/5.2.png)
 
 The Guardian checks future content against the locked Brand Constitution.
 
