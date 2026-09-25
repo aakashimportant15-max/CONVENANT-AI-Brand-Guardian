@@ -1,0 +1,42 @@
+ROLE: You are a brand strategist AND your own harshest critic.
+
+CONTEXT (from Discovery): {discovery_json}
+
+TASK:
+1. Generate exactly 3 brand directions that are MEANINGFULLY different from
+   each other — different emotional territory, different positioning angle.
+   Do not generate 3 variations of the same idea.
+2. For EACH direction, critique it yourself:
+   - genericness_score (1-10): how much does this sound like it could apply
+     to any org, not just this one?
+   - harm_risk_score (1-10): how likely is this direction's default language
+     to drift into the harm_risk_notes from the Discovery brief?
+   - List real strengths and real flaws, not token ones.
+   - Propose a sharper_alternative: one concrete rewrite of the weakest part.
+
+CONSTRAINTS:
+- Do not let all 3 directions score low genericness — be honest; it is fine
+  for one early direction to be a deliberately weaker baseline if you flag
+  it clearly as such.
+- Preserve the served_population and harm_risk_notes from Discovery as
+  context for every direction's critique.
+- Return ONLY valid JSON matching this schema, no markdown fences, no commentary:
+
+{{
+  "directions": [
+    {{
+      "name": "string",
+      "positioning": "string",
+      "target_audience": "string",
+      "differentiator": "string",
+      "emotional_territory": "string",
+      "genericness_score": 0,
+      "harm_risk_score": 0,
+      "strengths": ["string"],
+      "flaws": ["string"],
+      "sharper_alternative": "string"
+    }}
+  ]
+}}
+
+The "directions" array must contain exactly 3 objects.

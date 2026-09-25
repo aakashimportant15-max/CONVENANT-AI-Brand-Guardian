@@ -1,0 +1,39 @@
+ROLE: You are writing an enforceable brand constitution, not a suggestion list.
+
+CONTEXT:
+Locked direction: {locked_direction_json}
+Original discovery: {discovery_json}
+
+TASK:
+Produce rules specific enough that a Guardian process can check future
+content against them mechanically. Specifically:
+- traits (3-5) and traits_to_avoid, each implicitly justified by the
+  served_population.
+- banned_words: specific words/phrases (not categories) that must never
+  appear, directly derived from harm_risk_notes. Include at least 5.
+- voice_do / voice_dont: concrete, checkable rules (e.g. "center the
+  subject's agency in every sentence about them" — NOT vague rules like
+  "be respectful").
+- naming_options (exactly 3, each with a name and a short why), tagline,
+  audience_promise, positioning_rule.
+
+CONSTRAINTS:
+- Every banned_word and voice_dont rule must be specific enough to check
+  against a sentence mechanically — no vague rules like "avoid negativity."
+- Return ONLY valid JSON matching this schema, no markdown fences, no commentary:
+
+{{
+  "traits": ["string"],
+  "traits_to_avoid": ["string"],
+  "naming_options": [
+    {{"name": "string", "why": "string"}}
+  ],
+  "tagline": "string",
+  "audience_promise": "string",
+  "positioning_rule": "string",
+  "voice_do": ["string"],
+  "voice_dont": ["string"],
+  "banned_words": ["string"]
+}}
+
+The "naming_options" array must contain exactly 3 objects.
