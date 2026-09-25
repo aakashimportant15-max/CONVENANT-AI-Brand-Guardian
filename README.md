@@ -1,153 +1,945 @@
-# Covenant
+# Covenant — AI Brand Constitution & Guardian
 
-An AI brand constitution and Guardian that turns brand decisions into
-enforceable communication rules — especially for organizations where tone,
-dignity, or identity matter.
+> **Turn a rough idea into a consistent brand — then keep every future message aligned with the rules that matter.**
 
-## The Problem
+Covenant is an AI-powered brand constitution and communication Guardian for organizations where **tone, dignity, identity, and respectful language matter**.
 
-Founders and communicators for support groups, identity-led businesses, and
-dignity-sensitive causes often start with one rough sentence. Generic AI
-branding tools default to hype language ("game-changing," "unlock your
-potential," "inspiring example") that isn't just weak in this context — it
-can be actively harmful to the people the brand serves. Volunteers and staff
-also turn over constantly, so even a good brand decision made once doesn't
-stay consistent without something enforcing it later.
+Instead of generating a brand once and leaving the team to maintain it manually, Covenant turns brand decisions into a **structured, enforceable communication system**. It guides an idea through discovery, strategic direction, constitution building, and ongoing content validation.
 
-## The Solution
+---
 
-Covenant doesn't just generate a brand once. It runs the idea through a
-4-stage AI pipeline that ends in a **locked, structured Brand Constitution**
-— and then a **Guardian** checks any future content against that
-constitution, citing the exact rule violated and proposing an on-brand
-rewrite.
+## ✨ What Covenant Does
 
-## Why This Is Different (not a wrapper)
+Covenant takes a rough product, business, community, or organization idea and moves it through a four-stage AI workflow:
 
-- Every stage produces structured JSON, validated with Pydantic, that
-  becomes the *input* to the next stage — nothing restarts from scratch.
-- The Strategist critiques its own output (genericness + harm-risk scoring)
-  before the user ever sees it.
-- The user makes one meaningful decision: locking a direction. That
-  decision becomes an enforceable rule set, not just a saved preference.
-- The Guardian combines an LLM judgment with a deterministic banned-phrase
-  scan, and cites the specific rule broken — not just "this sounds off."
-
-## AI Workflow
-
-```
+```text
 Rough Idea
-   |
-   v
-[LLM Call 1] Discovery -> DiscoveryOutput
-   |
-   v
-[LLM Call 2] Strategist + Critic -> 3x BrandDirection (self-scored)
-   |
-   v
-USER LOCKS ONE DIRECTION
-   |
-   v
-[LLM Call 3] Constitution -> BrandConstitution
-   |
-   v
-[LLM Call 4 + deterministic check] Guardian -> GuardianResult
-   |
-   v
+    ↓
+01. Discovery
+    ↓
+02. Directions + Critique
+    ↓
+     USER LOCKS ONE DIRECTION
+    ↓
+03. Brand Constitution
+    ↓
+04. Guardian
+    ↓
 Mini Brand Kit
 ```
 
-Only 4 LLM calls total. Each stage's structured output is passed forward
-as context to the next stage's prompt — visible in the "Under the Hood"
-expander on every screen.
+The important difference is that Covenant does **not** treat each AI call as an isolated generation task.
 
-## Architecture
+Every stage produces structured data that becomes context for the next stage. The selected strategic direction becomes the foundation of the Brand Constitution, and the Constitution becomes the rule set used by the Guardian.
 
-- `models/schemas.py` — Pydantic models for every stage's output
-- `services/` — one function per stage (`run_discovery`, `run_strategy`,
-  `run_constitution`, `run_guardian`), each calling `services/llm.py`
-- `services/llm.py` — single point of contact with the LLM API; handles
-  JSON parsing, schema validation, and one retry on failure
-- `utils/deterministic_checks.py` — a banned-phrase lexicon checked with
-  plain Python string matching, independent of the LLM
-- `utils/demo_data.py` — a complete, hand-written example run used for the
-  "Use demo example" button and as an automatic fallback if a live call fails
-- `prompts/` — the four production prompts, one per stage
-- `app.py` — the Streamlit UI and session-state orchestration
+---
 
-## Tech Stack
+# 🚀 Live Product
 
-Python, Streamlit, Anthropic API (Claude), Pydantic, python-dotenv.
-No database, no authentication, no RAG, no vector store, no agent framework.
+**Live Demo:**  
+https://covenant-ai-brand-guardian.streamlit.app/
 
-## Project Structure
+> If the custom URL is unavailable or changes, use the live Streamlit application URL provided by the deployment.
 
+**Source Code:**  
+https://github.com/aakashimportant15-max/CONVENANT-AI-Brand-Guardian
+
+---
+
+# 🎯 The Problem
+
+Founders, community builders, support organizations, and identity-led businesses often begin with a single rough idea.
+
+The difficult part is not simply producing more marketing copy.
+
+The difficult part is keeping communication:
+
+- consistent
+- specific
+- aligned with the organization's identity
+- respectful toward the people it serves
+- understandable to new team members
+- protected from generic AI language
+
+Generic AI branding tools can easily fall back to phrases such as:
+
+> "game-changing"
+
+> "unlock your potential"
+
+> "inspiring example"
+
+In ordinary marketing, these phrases may simply feel generic.
+
+For dignity-sensitive or identity-led organizations, however, language can also unintentionally introduce **deficit framing, stereotypes, or harmful assumptions**.
+
+Covenant addresses this by turning strategic brand decisions into explicit communication rules that can be checked later.
+
+---
+
+# 💡 The Solution
+
+Covenant creates a **Brand Constitution** from the user's selected strategic direction.
+
+The Constitution captures things such as:
+
+- brand traits
+- traits to avoid
+- naming directions
+- tagline
+- audience promise
+- positioning rule
+- voice guidelines
+- do / don't rules
+- banned phrases
+
+The **Guardian** then checks future content against those rules.
+
+Instead of returning only:
+
+```text
+This doesn't sound on-brand.
 ```
-covenant/
+
+Covenant can return:
+
+```text
+FAIL
+
+Violated Rule:
+Avoid deficit framing.
+
+Evidence:
+"inspiring example"
+
+Why:
+The wording frames the person primarily through overcoming
+a condition rather than their agency and work.
+
+Suggested Rewrite:
+...
+```
+
+The Guardian also performs a deterministic banned-phrase scan alongside the LLM judgment.
+
+---
+
+# 🧠 Why This Is More Than an AI Wrapper
+
+Covenant's core value is the workflow and the state that moves through it.
+
+### 1. Structured state between stages
+
+Each stage produces structured JSON validated through Pydantic.
+
+```text
+DiscoveryOutput
+      ↓
+BrandDirection
+      ↓
+BrandConstitution
+      ↓
+GuardianResult
+```
+
+The next stage receives the previous stage's decisions as context.
+
+---
+
+### 2. AI critique before user selection
+
+The strategy stage produces multiple directions and evaluates them using:
+
+- genericness
+- harm risk
+- strengths
+- flaws
+- sharper alternatives
+
+The user then chooses which direction to lock.
+
+The system therefore supports a human decision instead of silently choosing a brand direction for the user.
+
+---
+
+### 3. Decisions become enforceable rules
+
+The selected direction is not simply displayed and forgotten.
+
+It becomes the foundation for the Brand Constitution.
+
+The Constitution then becomes the Guardian's source of truth.
+
+```text
+Decision
+   ↓
+Constitution
+   ↓
+Rule
+   ↓
+Future Content Check
+```
+
+---
+
+### 4. Hybrid AI + deterministic checking
+
+The Guardian combines:
+
+**LLM reasoning**
+
+with
+
+**deterministic Python checks**
+
+The deterministic layer scans for configured banned phrases independently of the LLM.
+
+This gives the system an additional predictable validation layer instead of relying entirely on model output.
+
+---
+
+# 🔄 Complete Product Workflow
+
+## Step 1 — Idea
+
+**Screenshot:** `scr/1.png`
+
+The user starts with a rough idea.
+
+Example:
+
+> "A coaching business run by and for neurodivergent adults."
+
+Covenant uses the idea as the starting point for the workflow.
+
+The user can also load the built-in demo scenario without making an API call.
+
+### Output
+
+The idea is passed into the Discovery stage.
+
+---
+
+## Step 2 — Discovery
+
+**Screenshot:** `scr/2.png`
+
+The Discovery stage converts the rough idea into a structured problem and audience brief.
+
+It identifies:
+
+- problem
+- target user
+- served population
+- harm-risk notes
+- key value
+- constraints
+- assumptions
+
+This creates a shared structured context for the strategic stage.
+
+### AI Stage
+
+```text
+Rough Idea
+    ↓
+LLM Call #1
+    ↓
+DiscoveryOutput
+```
+
+---
+
+## Step 3 — Directions + Critique
+
+**Screenshots:**
+
+- `scr/3.1.png`
+- `scr/3.2.png`
+- `scr/3.3.png`
+
+Covenant generates **three distinct brand directions**.
+
+Each direction contains:
+
+- name
+- positioning
+- target audience
+- differentiator
+- emotional territory
+- genericness score
+- harm-risk score
+- strengths
+- flaws
+- sharper alternative
+
+The system critiques the generated directions before presenting them to the user.
+
+### Human Decision Point
+
+The user chooses one direction and locks it.
+
+```text
+3 AI-generated directions
+          ↓
+   Critique + scoring
+          ↓
+    Human selection
+          ↓
+    LOCKED DIRECTION
+```
+
+This is one of the most important interaction points in the product.
+
+---
+
+## Step 4 — Brand Constitution
+
+**Screenshots:**
+
+- `scr/4.png`
+- `scr/4.2.png`
+
+The locked direction becomes the input for Constitution generation.
+
+The Constitution contains:
+
+### Brand identity
+
+- traits
+- traits to avoid
+
+### Positioning
+
+- audience promise
+- positioning rule
+
+### Voice
+
+- voice do
+- voice don't
+
+### Naming
+
+- naming options
+- tagline
+
+### Safety / consistency
+
+- banned words and phrases
+
+### AI Stage
+
+```text
+Locked Brand Direction
+        ↓
+    LLM Call #3
+        ↓
+BrandConstitution
+```
+
+This Constitution becomes the rule set for the Guardian.
+
+---
+
+# 🛡️ Step 5 — Guardian
+
+**Screenshots:**
+
+- `scr/5.png`
+- `scr/5.1.png`
+- `scr/5.2.png`
+
+The Guardian checks future content against the locked Brand Constitution.
+
+The user can paste a piece of content and receive a structured validation result.
+
+### PASS
+
+If the content follows the Constitution:
+
+```text
+PASS
+```
+
+The system can show the supporting validation state.
+
+### FAIL
+
+If the content violates the Constitution, the Guardian provides:
+
+- verdict
+- violated rule
+- explanation
+- evidence quote
+- suggested rewrite
+- why the rewrite fits
+- deterministic lexicon flags
+
+---
+
+# ⚡ Guardian Example
+
+### Content being checked
+
+> "Meet Sam — an inspiring example of someone who overcame ADHD and defeated his limitations through discipline."
+
+The Guardian can identify language such as:
+
+- `overcame`
+- `inspiring example`
+- `despite his`
+
+and connect the result to the Constitution's communication rules.
+
+Instead of only flagging the content, it proposes a rewrite that better centers the person's agency.
+
+This is the central product demonstration:
+
+```text
+Brand Decision
+      ↓
+Brand Constitution
+      ↓
+Future Content
+      ↓
+Guardian
+      ↓
+Rule + Evidence + Explanation + Rewrite
+```
+
+---
+
+# 🎨 Step 6 — Mini Brand Kit
+
+**Screenshot:** `scr/6.png`
+
+After the Constitution is generated, Covenant presents a compact Mini Brand Kit containing the key decisions created during the workflow.
+
+The application also provides structured output that can be reviewed or downloaded.
+
+---
+
+# 🤖 AI Workflow
+
+Covenant uses **four LLM calls** in the complete workflow.
+
+```text
+┌───────────────────────────────┐
+│          ROUGH IDEA           │
+└───────────────┬───────────────┘
+                ↓
+        ┌───────────────┐
+        │ LLM CALL #1   │
+        │  DISCOVERY    │
+        └───────┬───────┘
+                ↓
+        DiscoveryOutput
+                ↓
+        ┌───────────────┐
+        │ LLM CALL #2   │
+        │  STRATEGIST   │
+        │  + CRITIC     │
+        └───────┬───────┘
+                ↓
+       3 Brand Directions
+                ↓
+          USER SELECTS
+                ↓
+        LOCKED DIRECTION
+                ↓
+        ┌───────────────┐
+        │ LLM CALL #3   │
+        │ CONSTITUTION  │
+        └───────┬───────┘
+                ↓
+       Brand Constitution
+                ↓
+        ┌───────────────┐
+        │ LLM CALL #4   │
+        │   GUARDIAN    │
+        └───────┬───────┘
+                │
+                ├───────────────┐
+                ↓               ↓
+         LLM Judgment    Deterministic
+                         Phrase Scan
+                │               │
+                └───────┬───────┘
+                        ↓
+                 Guardian Result
+                        ↓
+                  Mini Brand Kit
+```
+
+---
+
+# 🔍 Under the Hood
+
+The application intentionally exposes the AI workflow instead of hiding everything behind a single "Generate Brand" button.
+
+Each stage can show the structured context moving through the system.
+
+This makes the architecture easier to inspect and demonstrates that the application is using a multi-stage workflow rather than performing one large prompt.
+
+---
+
+# 🏗️ Architecture
+
+```text
+                    Streamlit UI
+                         │
+                         ▼
+                    app.py
+                         │
+              ┌──────────┴──────────┐
+              │                     │
+              ▼                     ▼
+          Services                Session
+              │                    State
+              │
+      ┌───────┼────────┬───────────┐
+      ▼       ▼        ▼           ▼
+ Discovery Strategy Constitution Guardian
+      │       │        │           │
+      └───────┴────────┴───────────┘
+                       │
+                       ▼
+                  services/llm.py
+                       │
+                       ▼
+                    Groq API
+                       │
+                       ▼
+                Structured JSON
+                       │
+                       ▼
+                   Pydantic
+```
+
+Guardian validation additionally connects to:
+
+```text
+utils/deterministic_checks.py
+```
+
+for deterministic banned-phrase detection.
+
+---
+
+# 📁 Project Structure
+
+```text
+CONVENANT-AI-Brand-Guardian/
+│
 ├── app.py
+├── ui_theme.py
 ├── requirements.txt
+├── .gitignore
 ├── .env.example
-├── models/schemas.py
-├── services/{llm,discovery,strategy,constitution,guardian}.py
-├── utils/{validation,deterministic_checks,demo_data}.py
-└── prompts/{discovery,strategy,constitution,guardian}.txt
+├── README.md
+│
+├── .streamlit/
+│   └── config.toml
+│
+├── models/
+│   ├── __init__.py
+│   └── schemas.py
+│
+├── prompts/
+│   ├── constitution.txt
+│   ├── discovery.txt
+│   ├── guardian.txt
+│   └── strategy.txt
+│
+├── services/
+│   ├── __init__.py
+│   ├── constitution.py
+│   ├── discovery.py
+│   ├── guardian.py
+│   ├── llm.py
+│   └── strategy.py
+│
+├── utils/
+│   ├── __init__.py
+│   ├── demo_data.py
+│   ├── deterministic_checks.py
+│   └── validation.py
+│
+├── tests/
+│   ├── __init__.py
+│   ├── test_constitution.py
+│   ├── test_deterministic_checks.py
+│   ├── test_discovery.py
+│   ├── test_guardian.py
+│   ├── test_llm.py
+│   ├── test_schema.py
+│   ├── test_strategy.py
+│   └── test_validation.py
+│
+└── scr/
+    ├── 1.png
+    ├── 2.png
+    ├── 3.1.png
+    ├── 3.2.png
+    ├── 3.3.png
+    ├── 4.png
+    ├── 4.2.png
+    ├── 5.png
+    ├── 5.1.png
+    ├── 5.2.png
+    └── 6.png
 ```
 
-## Installation
+---
+
+# 🖼️ Product Screenshots
+
+## 01 — Idea
+
+![Covenant Idea](https://github.com/aakashimportant15-max/CONVENANT-AI-Brand-Guardian/blob/main/scr/1.png?raw=true)
+
+---
+
+## 02 — Discovery
+
+![Covenant Discovery](https://github.com/aakashimportant15-max/CONVENANT-AI-Brand-Guardian/blob/main/scr/2.png?raw=true)
+
+---
+
+## 03 — Brand Directions
+
+### Direction overview
+
+![Covenant Directions](https://github.com/aakashimportant15-max/CONVENANT-AI-Brand-Guardian/blob/main/scr/3.1.png?raw=true)
+
+### Direction details
+
+![Covenant Direction Details](https://github.com/aakashimportant15-max/CONVENANT-AI-Brand-Guardian/blob/main/scr/3.2.png?raw=true)
+
+### Direction selection
+
+![Covenant Direction Selection](https://github.com/aakashimportant15-max/CONVENANT-AI-Brand-Guardian/blob/main/scr/3.3.png?raw=true)
+
+---
+
+## 04 — Brand Constitution
+
+![Covenant Constitution](https://github.com/aakashimportant15-max/CONVENANT-AI-Brand-Guardian/blob/main/scr/4.png?raw=true)
+
+![Covenant Constitution Details](https://github.com/aakashimportant15-max/CONVENANT-AI-Brand-Guardian/blob/main/scr/4.2.png?raw=true)
+
+---
+
+## 05 — Guardian
+
+### Guardian overview
+
+![Covenant Guardian](https://github.com/aakashimportant15-max/CONVENANT-AI-Brand-Guardian/blob/main/scr/5.png?raw=true)
+
+### Guardian validation
+
+![Covenant Guardian Result](https://github.com/aakashimportant15-max/CONVENANT-AI-Brand-Guardian/blob/main/scr/5.1.png?raw=true)
+
+### Guardian evidence and rewrite
+
+![Covenant Guardian Rewrite](https://github.com/aakashimportant15-max/CONVENANT-AI-Brand-Guardian/blob/main/scr/5.2.png?raw=true)
+
+---
+
+## 06 — Mini Brand Kit
+
+![Covenant Mini Brand Kit](https://github.com/aakashimportant15-max/CONVENANT-AI-Brand-Guardian/blob/main/scr/6.png?raw=true)
+
+---
+
+# 🧰 Tech Stack
+
+- **Python**
+- **Streamlit**
+- **Groq API**
+- **Pydantic**
+- **python-dotenv**
+- **Pytest**
+- Structured JSON workflows
+- Session-state orchestration
+- Deterministic Python validation
+
+> The repository currently uses the Groq API for the LLM layer.
+
+---
+
+# 🔐 Environment Configuration
+
+For local development, create a `.env` file:
+
+```env
+GROQ_API_KEY=your_groq_api_key_here
+```
+
+A safe template is included as:
+
+```text
+.env.example
+```
+
+### Never commit your real `.env`
+
+The API key must remain private.
+
+For Streamlit Community Cloud, configure the key through:
+
+**App settings → Secrets**
+
+Use TOML:
+
+```toml
+GROQ_API_KEY = "your_groq_api_key_here"
+```
+
+---
+
+# 💻 Run Locally
+
+## 1. Clone the repository
+
+```bash
+git clone https://github.com/aakashimportant15-max/CONVENANT-AI-Brand-Guardian.git
+cd CONVENANT-AI-Brand-Guardian
+```
+
+## 2. Create a virtual environment
+
+### Windows
 
 ```bash
 python -m venv .venv
-source .venv/bin/activate      # .venv\Scripts\activate on Windows
-pip install -r requirements.txt
-cp .env.example .env           # then fill in your API key
+.venv\Scripts\activate
 ```
 
-## Environment Variables
+### macOS / Linux
 
-- `ANTHROPIC_API_KEY` — required for live LLM calls. The app runs fully
-  offline via the "Use demo example" button even without this set.
+```bash
+python -m venv .venv
+source .venv/bin/activate
+```
 
-## Running Locally
+## 3. Install dependencies
+
+```bash
+pip install -r requirements.txt
+```
+
+## 4. Configure the API key
+
+Create `.env`:
+
+```env
+GROQ_API_KEY=your_groq_api_key_here
+```
+
+## 5. Start Covenant
 
 ```bash
 streamlit run app.py
 ```
 
-## Demo Mode
+The application will open in your browser.
 
-Click **"Use demo example"** in the sidebar (or on the input screen) at any
-time. This loads a complete, valid run of all 4 stages for a real scenario
-— a coaching business run by and for neurodivergent adults — with zero API
-calls. This is also the automatic fallback if a live call fails twice.
+---
 
-## Deployment
+# 🧪 Testing
 
-Deployed on Streamlit Community Cloud. Set `ANTHROPIC_API_KEY` under
-**App settings -> Secrets** as:
+The project includes unit tests for the major application layers.
 
-```toml
-ANTHROPIC_API_KEY = "your_key_here"
+Run:
+
+```bash
+pytest
 ```
 
-## Example Walkthrough
+The test suite covers areas including:
 
-Input: *"A coaching business run by and for neurodivergent adults."*
+- Pydantic schemas
+- LLM service behavior
+- Discovery
+- Strategy
+- Constitution
+- Guardian
+- Deterministic checks
+- JSON validation
 
-Guardian test: paste *"Meet Sam — an inspiring example of someone who
-overcame ADHD to build a business!"* — Guardian returns **FAIL**, citing the
-constitution's rule against deficit framing, quoting the offending phrase,
-and rewriting it to center Sam's agency instead.
+---
 
-## Limitations
+# 🧯 Reliability & Failure Handling
 
-- Constitution is read-only once generated in this MVP (no in-app editing).
-- Single-turn LLM judgment per stage — no multi-round debate.
-- Genericness/harm-risk scores are the model's own self-assessment, not an
-  independently trained classifier.
+Covenant is designed to remain usable even when a live model call fails.
 
-## Future Improvements
+The LLM service includes:
 
-- Editable constitution with re-validation
-- Guardian check history / batch-checking multiple pieces of content
-- Exportable PDF brand kit
-- Visual direction stage (typography, color, mood)
+- structured JSON parsing
+- Pydantic validation
+- retry behavior for invalid responses
+- controlled error handling
+
+The application also includes a complete demo dataset.
+
+### Demo Mode
+
+The **Use demo example** flow allows the complete product workflow to be demonstrated without making live API calls.
+
+This is useful for:
+
+- presentations
+- judging
+- development
+- API outages
+- rate limits
+- reproducible demonstrations
+
+---
+
+# 📊 Structured Data Contracts
+
+The application uses Pydantic schemas to keep the workflow structured.
+
+Key objects include:
+
+```text
+DiscoveryOutput
+BrandDirection
+BrandConstitution
+GuardianResult
+```
+
+This provides a defined contract between each stage instead of passing uncontrolled text throughout the application.
+
+---
+
+# 🛡️ Guardian Validation Model
+
+The Guardian uses two complementary mechanisms.
+
+### AI judgment
+
+The LLM evaluates:
+
+- constitution alignment
+- tone
+- communication rules
+- contextual meaning
+- potential violations
+
+### Deterministic scan
+
+Python checks configured phrases independently.
+
+Conceptually:
+
+```text
+                   Content
+                      │
+             ┌────────┴────────┐
+             ▼                 ▼
+        LLM Guardian      Python Scanner
+             │                 │
+             └────────┬────────┘
+                      ▼
+               Guardian Result
+```
+
+This hybrid approach makes the Guardian more transparent than relying on a single model response.
+
+---
+
+# ⚠️ Current Limitations
+
+This is an MVP and intentionally keeps the scope focused.
+
+Current limitations include:
+
+- Constitution is read-only after generation.
+- Guardian checks one content input at a time.
+- Genericness and harm-risk scores are model-generated assessments, not independently trained classifiers.
+- The product does not currently include a database or authentication system.
+- The visual brand stage is intentionally outside the current MVP scope.
+- No multi-round agent debate is used.
+
+---
+
+# 🔮 Future Improvements
+
+Potential extensions include:
+
+- editable Constitution with re-validation
+- Guardian history
+- batch content checking
+- team collaboration
+- exportable brand kit
+- visual identity direction
+- additional deterministic policy checks
+- organization-level rule libraries
+- richer analytics around recurring communication violations
+
+---
+
+# 🏆 Hackathon Focus
+
+Covenant was designed around a simple principle:
+
+> **Don't just generate a brand. Turn the decisions behind the brand into rules that survive the next piece of content.**
+
+The product focuses on six core ideas:
+
+```text
+Discover
+   ↓
+Position
+   ↓
+Choose
+   ↓
+Constitution
+   ↓
+Guard
+   ↓
+Deliver
+```
+
+The most important transition is:
+
+```text
+AI-generated decision
+        ↓
+Human-selected direction
+        ↓
+Structured constitution
+        ↓
+Enforceable communication rules
+        ↓
+Future content validation
+```
+
+---
+
+# 👤 Contribution
+
+**Role:** AI Product Developer / Full-Stack AI Builder
+
+Key contributions:
+
+- Designed the Covenant product concept and workflow.
+- Designed the multi-stage AI architecture.
+- Implemented structured Pydantic data contracts.
+- Implemented the LLM service and validation flow.
+- Built Discovery, Strategy, Constitution, and Guardian stages.
+- Implemented deterministic phrase checking.
+- Built the Streamlit interface and workflow state management.
+- Added demo-mode and fallback behavior.
+- Added automated tests for core services and validation.
+- Deployed the working application through Streamlit Community Cloud.
+
+---
+
+# 📄 License
+
+This project was created as a hackathon project and is provided for demonstration and evaluation purposes.
