@@ -1,0 +1,85 @@
+# Covenant — theme.
+#
+# Layer 1 of the UI system. Colors, radius and typography live here so the app
+# uses Streamlit's native theming instead of fighting it with CSS overrides.
+# ui_theme.py holds the same hexes as CSS custom properties (--cv-*); keep the
+# two in sync when changing a brand color.
+#
+# Both [theme.light] and [theme.dark] are defined. That is what unlocks the
+# System / Light / Dark switch in the app's settings menu: the app follows the
+# viewer's OS preference by default and each viewer can override it.
+
+[theme]
+baseRadius = "12px"        # cards, inputs and popovers
+buttonRadius = "11px"      # matches .stButton button in ui_theme.py
+linkUnderline = false
+baseFontSize = 16
+codeFont = "monospace"
+# Native Google Fonts loading. If the machine is offline the declaration fails
+# silently and the stack falls back to system-ui, so deployment stays simple.
+font = "Inter:https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&display=swap"
+headingFont = "Inter:https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&display=swap"
+headingFontWeights = [650, 700, 750, 800]
+headingFontSizes = ["1.75rem", "1.45rem", "1.2rem", "1.05rem", "0.95rem", "0.9rem"]
+
+[theme.light]
+primaryColor = "#5B4BFF"              # Covenant's brand accent
+backgroundColor = "#F8F9FF"           # very light lavender-white, not stark white
+secondaryBackgroundColor = "#F5F3FF"  # inputs, code, secondary surfaces
+textColor = "#11152F"                 # deep navy-ink, softer than pure #000
+borderColor = "#E6E8F0"
+codeBackgroundColor = "#F5F3FF"
+codeTextColor = "#11152F"
+linkColor = "#4338CA"
+
+# Status palette — same hexes ui_theme.py uses for the score numbers, the
+# Guardian verdict cards and the chips, so custom and native elements agree.
+greenColor = "#16A34A"
+greenBackgroundColor = "#F0FDF4"
+greenTextColor = "#15803D"
+orangeColor = "#D97706"
+orangeBackgroundColor = "#FFFBEB"
+orangeTextColor = "#B45309"
+redColor = "#DC2626"
+redBackgroundColor = "#FEF2F2"
+redTextColor = "#B91C1C"
+
+[theme.light.sidebar]
+backgroundColor = "#FFFFFF"
+secondaryBackgroundColor = "#F5F3FF"
+borderColor = "#E6E8F0"
+
+[theme.dark]
+# primaryColor is the lighter lavender here because it is used for links,
+# focus rings and accents on dark surfaces. Primary *buttons* carry white text
+# and therefore use the darker ramp (--cv-btn-from/--cv-btn-to in ui_theme.py).
+primaryColor = "#7C6CFF"
+backgroundColor = "#0B0E1E"
+secondaryBackgroundColor = "#1B2044"
+textColor = "#ECEEFB"
+borderColor = "#272C4E"
+codeBackgroundColor = "#1B2044"
+codeTextColor = "#ECEEFB"
+linkColor = "#C9BFFF"                 # links need to be lighter on dark
+
+greenColor = "#4ADE80"
+greenBackgroundColor = "#12251A"
+greenTextColor = "#86EFAC"
+orangeColor = "#FBBF24"
+orangeBackgroundColor = "#2A1F0A"
+orangeTextColor = "#FCD34D"
+redColor = "#F87171"
+redBackgroundColor = "#2B1616"
+redTextColor = "#FCA5A5"
+
+[theme.dark.sidebar]
+backgroundColor = "#141834"
+secondaryBackgroundColor = "#1B2044"
+borderColor = "#272C4E"
+
+[client]
+# Hides the developer toolbar (Deploy, rerun, clear cache) so the app reads as a
+# product rather than a Streamlit dev session. Viewer options — including the
+# System / Light / Dark theme toggle — stay available. Set back to "auto" while
+# developing if you want the rerun/cache controls in the menu.
+toolbarMode = "viewer"
